@@ -1,57 +1,65 @@
 <template>
   <v-app>
-    <v-app-bar app color="primary" dark>
-      <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
+    <drawer />
 
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
-      </div>
-
-      <v-spacer></v-spacer>
-
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
-    </v-app-bar>
-
+    <!-- Sizes your content based upon application components -->
     <v-main>
-      <HelloWorld />
+      <!-- Provides the application the proper gutter -->
+      <v-container fluid>
+        <!-- If using vue-router -->
+        <router-view></router-view>
+      </v-container>
     </v-main>
+
+    <v-footer app absolute class="indigo lighten-1">
+      <v-container fluid>
+        <v-card flat tile class="indigo lighten-1 white--text text-center">
+          <v-card-text>
+            <v-btn
+              v-for="social in socials"
+              :key="social.icon"
+              class="mx-4 white--text"
+              icon
+              :href="social.href"
+            >
+              <v-icon size="24px">
+                {{ social.icon }}
+              </v-icon>
+            </v-btn>
+          </v-card-text>
+
+          <v-card-text class="white--text pt-0">
+            Faxtop is a crawler app for humans and with different integrations
+          </v-card-text>
+
+          <v-divider></v-divider>
+
+          <v-card-text class="white--text">
+            {{ new Date().getFullYear() }} — <strong>Faxtop</strong>
+          </v-card-text>
+        </v-card>
+      </v-container>
+    </v-footer>
   </v-app>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
-import HelloWorld from './components/HelloWorld.vue';
+import NavigationDrawer from '@/Drawer.vue';
 
 export default Vue.extend({
   name: 'App',
 
   components: {
-    HelloWorld
+    drawer: NavigationDrawer
   },
 
   data: () => ({
-    //
+    socials: [
+      {icon: 'mdi-github', href: ''},
+      {icon: 'mdi-telegram', href: ''},
+      {icon: 'mdi-twitter', href: ''}
+    ]
   })
 });
 </script>
