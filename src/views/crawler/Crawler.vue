@@ -3,6 +3,9 @@
     <v-row>
       <v-col class="mb-4">
         <h1 class="display-2 font-weight-bold mb-3">
+          <v-btn icon medium @click="toList">
+            <v-icon>mdi-chevron-left</v-icon>
+          </v-btn>
           Crawler configuration {{ $route.params.id }}
         </h1>
         <v-form
@@ -12,41 +15,21 @@
           @submit.prevent="onSubmit"
         >
           <v-text-field
-            v-model="name"
-            :counter="10"
-            :rules="nameRules"
-            label="Name"
+            v-model="url"
+            :rules="urlRules"
+            label="Website URL"
             required
           ></v-text-field>
 
-          <v-text-field
-            v-model="email"
-            :rules="emailRules"
-            label="E-mail"
-            required
-          ></v-text-field>
-
-          <v-select
-            v-model="select"
-            :items="items"
-            :rules="[(v) => !!v || 'Item is required']"
-            label="Item"
-            required
-          ></v-select>
-
-          <v-checkbox
-            v-model="checkbox"
-            :rules="[(v) => !!v || 'You must agree to continue!']"
-            label="Do you agree?"
-            required
-          ></v-checkbox>
+          <v-textarea
+            v-model="crawlerConfig"
+            :rules="crawlerConfigRules"
+            solo
+            label="Config"
+          ></v-textarea>
 
           <v-btn :disabled="!valid" color="success" class="mr-4" type="submit">
             Submit
-          </v-btn>
-
-          <v-btn color="error" class="mr-4" @click="reset">
-            Reset Form
           </v-btn>
         </v-form>
       </v-col>
@@ -57,36 +40,38 @@
 <script lang="ts">
 import Vue from 'vue';
 
+function testUrl(url: string) {
+  try {
+    new URL(url);
+    return true;
+  } catch (e) {
+    return false;
+  }
+}
+
 export default Vue.extend({
   name: 'Crawler-Page',
   data: () => ({
     valid: true,
-    name: '',
-    nameRules: [
-      (v: any) => !!v || 'Name is required',
-      (v: string | any[]) =>
-        (v && v.length <= 10) || 'Name must be less than 10 characters'
+    url: '',
+    urlRules: [
+      (v: any) => Boolean(v) || 'URL is required',
+      (v: string) => testUrl(v) || 'URL is invalid'
     ],
-    email: '',
-    emailRules: [
-      (v: any) => !!v || 'E-mail is required',
-      (v: string) => /.+@.+\..+/.test(v) || 'E-mail must be valid'
-    ],
-    select: null,
-    items: ['Item 1', 'Item 2', 'Item 3', 'Item 4'],
-    checkbox: false
+    crawlerConfig: '',
+    crawlerConfigRules: [(v: any) => Boolean(v) || 'Config is required']
   }),
 
   methods: {
-    validate() {
+    onValidate() {
       return (this.$refs.form as HTMLFormElement).validate();
     },
-    reset() {
-      (this.$refs.form as HTMLFormElement).reset();
-    },
     onSubmit() {
-      this.valid = this.validate();
+      this.valid = this.onValidate();
       if (!this.valid) return;
+    },
+    toList() {
+      this.$router.push('/crawler');
     }
   }
 });
