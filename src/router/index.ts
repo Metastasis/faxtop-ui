@@ -14,7 +14,13 @@ const routes: Array<RouteConfig> = [
     path: '/crawler',
     name: 'Crawler',
     component: () =>
-      import(/* webpackChunkName: "crawler" */ '../views/Crawler.vue')
+      import(/* webpackChunkName: "crawler" */ '../views/crawler/List.vue')
+  },
+  {
+    path: '/crawler/:id',
+    name: 'Crawler Edit',
+    component: () =>
+      import(/* webpackChunkName: "crawler" */ '../views/crawler/Crawler.vue')
   },
   {
     path: '/about',
