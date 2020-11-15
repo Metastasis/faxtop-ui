@@ -1,8 +1,8 @@
 <template>
-  <v-container>
-    <v-row>
+  <v-container fluid>
+    <v-row dense>
       <v-col class="mb-4">
-        <h1 class="display-2 font-weight-bold mb-3">
+        <h1 class="text-h5 text-md-h3 font-weight-bold mb-4">
           <v-btn icon medium @click="toList">
             <v-icon>mdi-chevron-left</v-icon>
           </v-btn>
@@ -28,7 +28,7 @@
             label="Config"
           ></v-textarea>
 
-          <v-btn :disabled="!valid" color="success" class="mr-4" type="submit">
+          <v-btn :disabled="!valid" color="success" type="submit">
             Submit
           </v-btn>
         </v-form>

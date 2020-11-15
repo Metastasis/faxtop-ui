@@ -16,10 +16,10 @@
 
     <v-card-actions>
       <v-btn outlined text>
-        Edit
+        View
       </v-btn>
-      <v-btn outlined text>
-        Jobs
+      <v-btn outlined text @click="$emit('edit', '123123')">
+        Edit
       </v-btn>
     </v-card-actions>
   </v-card>
