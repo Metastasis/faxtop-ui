@@ -15,7 +15,7 @@
     </v-list-item>
 
     <v-card-actions>
-      <v-btn outlined text>
+      <v-btn outlined text @click="$emit('view', '123123')">
         View
       </v-btn>
       <v-btn outlined text @click="$emit('edit', '123123')">

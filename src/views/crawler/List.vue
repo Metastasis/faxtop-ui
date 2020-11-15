@@ -17,7 +17,7 @@
     </v-row>
     <v-row dense>
       <v-col sm="12" md="4" class="sm-6 mb-4">
-        <crawl-item @edit="onEdit" />
+        <crawl-item @edit="onEdit" @view="onView" />
       </v-col>
       <v-col sm="12" md="4" class="sm-6 mb-4">
         <crawl-item />
@@ -47,6 +47,9 @@ export default Vue.extend({
   methods: {
     onCreate() {
       this.$router.push('/crawler/213123');
+    },
+    onView(id: string) {
+      this.$router.push(`/crawler/${id}/status`);
     },
     onEdit(id: string) {
       this.$router.push(`/crawler/${id}`);

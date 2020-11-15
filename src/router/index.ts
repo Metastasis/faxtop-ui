@@ -23,6 +23,12 @@ const routes: Array<RouteConfig> = [
       import(/* webpackChunkName: "crawler" */ '../views/crawler/Crawler.vue')
   },
   {
+    path: '/crawler/:id/status',
+    name: 'Crawler Status',
+    component: () =>
+      import(/* webpackChunkName: "crawler" */ '../views/crawler/Status.vue')
+  },
+  {
     path: '/about',
     name: 'About',
     // route level code-splitting

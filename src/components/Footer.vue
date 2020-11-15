@@ -2,14 +2,14 @@
   <v-footer app absolute class="indigo lighten-1">
     <v-container fluid>
       <v-row align="center" dense>
-        <v-col>
+        <v-col cols="12" md="4">
           <v-card flat tile class="indigo lighten-1 text-center">
             <v-card-text class="white--text pa-0">
               Faxtop is a crawler app with different integrations for humans
             </v-card-text>
           </v-card>
         </v-col>
-        <v-col>
+        <v-col cols="12" md="4">
           <v-card flat tile class="indigo lighten-1 text-center pa-0">
             <v-card-text class="pa-0">
               <v-btn
@@ -26,7 +26,7 @@
             </v-card-text>
           </v-card>
         </v-col>
-        <v-col>
+        <v-col cols="12" md="4">
           <v-card flat tile class="indigo lighten-1 text-center">
             <v-card-text class="white--text pa-0">
               {{ new Date().getFullYear() }} — <strong>Faxtop</strong>
